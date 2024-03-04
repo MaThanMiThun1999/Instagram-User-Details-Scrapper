@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Instagram User Details Scrapper</title>
+    <link rel="shortcut icon" href="./icons/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./icons/apple-touch.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+  .card {
+    background-image: linear-gradient(
+    220deg,
+     hsl(305deg 83% 43%) 0%,
+     hsl(317deg 100% 44%) 10%,
+     hsl(326deg 100% 47%) 20%,
+     hsl(333deg 100% 49%) 30%,
+     hsl(343deg 97% 53%) 40%,
+     hsl(358deg 94% 60%) 50%,
+     hsl(12deg 100% 60%) 60%,
+     hsl(24deg 100% 56%) 70%,
+     hsl(34deg 100% 52%) 80%,
+     hsl(42deg 100% 50%) 90%,
+     hsl(48deg 100% 50%) 100%
+);
+  }
+}
+  </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section class="bg-pink-500 overflow-hidden">
+        <div class="flex h-screen max-w-md mx-auto bg-white flex-col justify-between">
+            <div>
+                <div class="max-w-md mx-auto bg-white">
+                    <div class="flex justify-between p-1">
+                        <div class="font-bold" id="time">
+                            9:12 AM
+                        </div>
+
+                        <div class="flex gap-2 justify-center items-center">
+                            <img src="https://previews.dropbox.com/p/thumb/ACPzpztRLvJSpaOnd8nPaIl_G3DJIwHS5AaPMSsbPHx0O3k91H-i0lpfqiG00qtFOb6wSsGzkRug0lAl5EHS_uLsRvWcSFwlZd2BFGqii38Fhv618w_Xz34Br310QF6UE0fpc8YiK5wGtIi4NvshKWiuzU4kk3jEexS2G-Oo1XFy9TEe5Qk7CKnBjBIKdBSau31kuy2FpVyYW6RbVV4Rm_CJcguEGN5PbbFK4-XkjiqJVB0PX0gnRjQK553NN5TXw-SIzZWNSdleLakOiXCkGkE2QYPWKD4jAxiVHsUhZE9iafpGvNSSfHOC-LThGn5vRjoJPcfLSgBIJv5lewz8gcSX/p.png"
+                                alt="">
+                            <img src="https://previews.dropbox.com/p/thumb/ACNnQBB863pw7pCsgvKSlZVcbAD1nq5cLttHMItVAFHEGWg3PwhL7yyRLKZj0JQYDfX36Dag8z_xEVm40a1QCpONAoXy4TcUqmyRxnEoOs8cw422Fwhsgr0vyro0Y-rk54ZwkMYBpxDPfWAGIwCDwVf-A3LqAfejqv9SoJ03Baec_iRU3pVsnVDKOH-kjFY0slvE8S6yRThy_iVBdiAxyf3FVXm8vs51mE5oSVo4XDOHPVPtMZObxqwh-MFYbmZZvTW2m5Xw6aTwufG8wTRqSSW_ZrgsO9OWmfiT0Qlt3Ljmp02fhw1h2sO32BJY5Dvw9pTLdXQbF7PFZEAsJHkbM1tx/p.png"
+                                alt="">
+                            <img src="https://previews.dropbox.com/p/thumb/ACNjtxryLxug_LsIc8N1bLELMBA3SGdvYx9b_dnJn7xV8YeghaLjr5kpl2NG4P3Ph-V9aiOeW6VpQUH-PLBf5zbFo_R1z5nD0_6lTJWZ85YBsn6PBB4hb8Rl7SLMe1QZj4-9c3G_w6PL7WurIc4VVjcZin_bv6gCa7bC5D_MhfLJDrrnCmz-6YLB75S46aHrLL9ZBI7XmuyInC3H8KJCsTMP5Od6bTxVYtiMl3yiq8vtDLke7IhAKi2xIP0IjClA3ZY-_HYvuDPM4L8UNxkGeI90pM-CyleLSTMOlRrtPi7A5NaxFt_v1TNVOA7Pga3XMBNsNWuKtEgmBmBcqvdwsbrw/p.png"
+                                alt="">
+                            <h1 class="font-bold" id="battery"></h1>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="flex justify-between items-center p-2">
+                        <div>
+                            <img src="https://previews.dropbox.com/p/thumb/ACMwvih4HtC2f3hhchOR4kA5ySWDNkBwXiiGfySPImJMpV6EVjwzYPGWuyYMFilQ4Sf8PLsfF9xG3Xz4blVPEcS3vJwDa9w_X-Jk9gD6tvoQO-rynsO-WsyJespPqyD93B8efVrpDTylPZfdDCX5O_PYvsW-BdrMmkfYgLboIxiLDGLKbiOfC9QusHoLssDkbZ2Zsx6oyfHXdgM3IMUwK-lhXoOWdRXi5-CLNdMyvUurTTZcvW3WyLWJwGHCMn2W7ctGYLkFUO5IYYZdpOI6X0ieX8fJXWDebRC8InoCkutC1DWFMpmtWL9HqbMAoiSblZABVXQozcUefcAdmL5JuE0A/p.png"
+                                alt="">
+                        </div>
+                        <div>
+                            <h1 class="font-bold username">its.me_mathan_mithun</h1>
+                        </div>
+                        <div class="flex space-x-1">
+                            <img src="https://previews.dropbox.com/p/thumb/ACNWGR66DdFjS1j6520lVttpBLIzZYakHtxL9l_DuH2XoinYKEfah8kaMBnYYfzo9YQ2zQWoqXafAr6sNFQyYCfsOquKZBXP0icnRiNG-xpYNjMsvg0EZwpSdrcN5tTVsAxxOpQGvf94pybXQJx39EME-qso2e39v9Q80pkB46Tf6l6NKVybdObF-n8aY0dgGO0xy1o7XHvzXOBFAs7U4KBpu7u8W9jsK520Kk7P7wSSF2f6tPMuSBUyfA0dMP9qF4V4jVbL8MVia5UqIB4fa34jBt9rMOup3VHl2m6L33T893p-skuvjr11x-ZUdtJG-E3f98tFh2mH8PlrbwPqcsR9/p.png"
+                                alt="">
+                            <img src="https://previews.dropbox.com/p/thumb/ACOkKo_noHxJts-EyGnkYzhd1EIjnYuXjCKOq0URuRN6eVumskEZ4ADzE9_EKqO8jy80xBk4ic1a9qemaTVfNDPRFSxVN8ZDeIR0Pi4ewHNEIhc7RPWFrAH7rkGMnxeAn9AFTf_WX-x46ZLDS5XlNQbve7rRkSl68OJBWceMi-zOp0Mne3EwN3YWK0r_kBvpf2h-nI75G78B0ftHFIXwsb3-PaAwYvTUaEu88fwdFbxXoCHotMl_PV9s2MHAlXLD6pwGCc7jRTUsejoqyxChtuTewEKDzmbKgL_8qUiKWHDyB9s7sp2u7cmco1srXUrvyIomT8qZRRhK2Uy-93BQTEzn/p.png"
+                                alt="">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="grid grid-cols-3 gap-5">
+                        <dir class="col-span-1 mt-4 my-auto pl-[30px]">
+                            <div class="w-[100px] rounded-full p-1 card">
+                                <img class="w-full rounded-full border-4 border-white profile-image" id="profileImage"
+                                    src="https://previews.dropbox.com/p/thumb/ACNBjJX8ArNhyULkcXuPFlpfBBmaszLHJScnZehIroCAv0DZFTgsotj3MrG5katopauhF_-7-2E58HdP83pF9Rsj8VUL4Dhq8oibgeNmJvJva7NQ6-UxStSymWu46OBdorTH0QJfqxyRfI1jdFnpd2u5cZ0heoKuWC7PHNhozx5VpMIkqSID0zZJ0QAIkKJ67J_VsFdWYoYFjSGhsix7KPwm6uzQsoDzWchxY43mr_GT4kA2RIxBkQIzhZFMR0Ll9Edh9DRGU4MPXG7GAsutxIbG-d1cnr8YGz5WEN9JoCPZ4wtT5z-l8Wn8Z3RdEyDPktAnkHSWjDbWOxDAtl867lVZ/p.jpeg"
+                                    alt="">
+                            </div>
+                        </dir>
+                        <div class="col-span-2 flex items-center justify-center gap-2 lg:gap-4 px-2">
+                            <div class="text-center">
+                                <h1 class="font-semibold postCount">400</h1>
+                                <h1 class="font-bold">Post</h1>
+                            </div>
+                            <div class="text-center">
+                                <h1 class="font-bold fullName">34K <br>Followers</h1>
+                                <!-- <h1 class="font-normal">Followers</h1> -->
+                            </div>
+                            <div class="text-center">
+                                <h1 class="font-bold followersCount">4185 <br> Followings</h1>
+                                <!-- <h1 class="font-normal">Followings</h1> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-2 py-1">
+                        <h1 class="font-bold text-[13px] username">its.me_mathan_mithun</h1>
+                        <p class="font-normal text-[10px] followingCount">Post Count: 400 Posts - See Instagram photos
+                            and videos from ⌁MaͥThͣaͫnMᎥThบn⌁ (@its.me_mathan_mithun)</p>
+                    </div>
+                    <hr>
+                    <div class="flex w-[50%] h-[50%] mx-auto justify-center p-5">
+                        <img width="150" id="img-custom" class=" shadow-2xl rounded-lg p-[2px] card profile-image"
+                            src="https://previews.dropbox.com/p/thumb/ACNBjJX8ArNhyULkcXuPFlpfBBmaszLHJScnZehIroCAv0DZFTgsotj3MrG5katopauhF_-7-2E58HdP83pF9Rsj8VUL4Dhq8oibgeNmJvJva7NQ6-UxStSymWu46OBdorTH0QJfqxyRfI1jdFnpd2u5cZ0heoKuWC7PHNhozx5VpMIkqSID0zZJ0QAIkKJ67J_VsFdWYoYFjSGhsix7KPwm6uzQsoDzWchxY43mr_GT4kA2RIxBkQIzhZFMR0Ll9Edh9DRGU4MPXG7GAsutxIbG-d1cnr8YGz5WEN9JoCPZ4wtT5z-l8Wn8Z3RdEyDPktAnkHSWjDbWOxDAtl867lVZ/p.jpeg"
+                            alt="">
+                    </div>
+
+                    <div class="flex justify-center gap-5">
+                        <button onclick="smallImg()"
+                            class="px-5 py-1 rounded-md bg-[#1FA1FF] text-white font-bold duration-300 hover:shadow-[0px_2px_1px_5px_#EF0089]">Small</button>
+                        <button onclick="normalImg()"
+                            class="px-5 py-1 rounded-md bg-[#1FA1FF] text-white font-bold duration-300 hover:shadow-[0px_2px_1px_5px_#EF0089]">Normal</button>
+                        <button onclick="bigImg()"
+                            class="px-5 py-1 rounded-md bg-[#1FA1FF] text-white font-bold duration-300 hover:shadow-[0px_2px_1px_5px_#EF0089] ">Big</button>
+                    </div>
+
+                    <div class="flex flex-col justify-center items-center pt-8">
+                        <input value="its.me_mathan_mithun" autocomplete="on" required type="text" id="usernameInput"
+                            class="w-[50%] mx-auto ring-2 px-3 py-1 rounded-xl duration-300 focus:outline-none focus:outline-1 shadow-[0px_0px_5px_2px_gray] focus:shadow-[0px_0px_5px_2px_#1FA1FF] placeholder:text-gray-500 placeholder-shown:font-semibold"
+                            placeholder="Enter Your Username">
+                        <div class="my-2">
+                            <button onclick="fetchDetails()"
+                                class="px-5 py-1 rounded-md bg-[#1FA1FF] text-white font-bold duration-300 hover:shadow-[0px_2px_1px_5px_#EF0089] hover:scale-105">Check</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex justify-between mx-5 my-2">
+                <div>
+                    <img src="https://previews.dropbox.com/p/thumb/ACMkR_x9PDKkX2bSRw8uqOBA9_URTk7bKVI5eTLmP8slDtV81x3RjkhCiiXLGa4LyBK1cQeaJCtrx9J9IZex0PrJ9dHGUbZC5A3JKOOn1GVSIVgVudfLjxDZruVsFUNPnfHOp0Yj1Q21Enn1Sv3ZWs9nVcaz57Xc4DHgRdCEwL5IFNzJAQNOQ6r6YWt3sjakO7b-8ANcJL_MpUc134IyDBK3_TGKPk4vVD94t-Aj0SjlvQ9mSDTPrt1_PZ9dolmrSFZWS31RD9YxHym_kPXIgcxlWHhdwQ228qU1G9vNediH_wpWcbVqaTM8Nn6smqcHQNhCcY7oV1pgHvUXs6cUwvOK/p.png"
+                        alt="">
+                </div>
+                <div>
+                    <img src="https://previews.dropbox.com/p/thumb/ACMPhNjW0Ntvo8R1WdQlWo4sv9iy50GAVzvzP0t_0n6ORNxlfa6ktZiWEa382Un4reEakS4L0vQgNO8KtgeRBeo2ERRMx2aTjZQtOOxpcsHR_TPm8XfQMmdsmtpRbpP9aWJLeLGf3XPVEZSIj1qNex4RAH5-wFIUYJdhcvQ140oQOrBRjS0beqd8FHAvHCPyaumSfpS9Masa5wTC0OuCrjdHngtszcwIoX_5SFyX2MWOexR5bOS1ThXDnoaRPNzTOOzmuidNDt7bwdwL-ol6aWUQcMQYZW4huwbEH038RKbU7NYvvXFOh6Ufz1ppJYb9fEz8MIgNZrhdakJOOMh9XuPs/p.png"
+                        alt="">
+                </div>
+                <div>
+                    <img src="https://previews.dropbox.com/p/thumb/ACN5T6a4dhdMBBiMoQBJVR1wqP3InwG-hBR7drd5kIM9PIcUGPml5dAHuNFj3Wkulr5hJSI-DkdVBbg9ajGBSo_ihzqUVG1M0zyA57X2-O0Mcu6Z3-mXlkeaRcjux-lxJJK9MdOCxnuHpJTsdOcDcL3Oo72B5ljWRRf2drO_Et8J_Az3BUdgzT-YDjqmsKPFa_ijIiRCIoKeWCsPz1KC9xhcPDLPbbHBiVn2M_IC1EXyI0sFYeAJytDrFpYgWH4ayGQFFeZhJpSglve6PL1i6bv2EGNajVOGg9uLIy0EOSlonx-TzRs-1TUp6WUf-I24oG2t2D9Hmi6cS_QBhCvCryjE/p.png"
+                        alt="">
+                </div>
+                <div>
+                    <img src="https://previews.dropbox.com/p/thumb/ACONBwpV4HXoqmsUVjzjyqITf2sNmMWdCnvllHrSgmkzK_ARmJTF0qjArznG8ShKjk5vP14xKGPtftblwiKOmqfMEeoOAiFo1rO1tjfWqLqv4T1LXm9w3jCF0iin3Ook-JUKiFA13h356NRqS4N1u7ARrwXsvMkP8x4prKUZt_o8tj2e_RiUcsDIGjOM7rDFMkPuq49M2XWlI76o7Q2INhpr7i7__5pugDH-EREapB8GcTNSMHC4yrvq1oMfiM74cmrqfU8tcuOCNXpJTHzMZ-gp4QUQ7257dJEs4xcvkniaO0T4-iLkPETDDdEVFpcERG6AEvbakGLUIodnH60_1R8u/p.png"
+                        alt="">
+                </div>
+                <div>
+                    <img class="w-[24px] h-[24px] rounded-full profile-image"
+                        src="https://previews.dropbox.com/p/thumb/ACNBjJX8ArNhyULkcXuPFlpfBBmaszLHJScnZehIroCAv0DZFTgsotj3MrG5katopauhF_-7-2E58HdP83pF9Rsj8VUL4Dhq8oibgeNmJvJva7NQ6-UxStSymWu46OBdorTH0QJfqxyRfI1jdFnpd2u5cZ0heoKuWC7PHNhozx5VpMIkqSID0zZJ0QAIkKJ67J_VsFdWYoYFjSGhsix7KPwm6uzQsoDzWchxY43mr_GT4kA2RIxBkQIzhZFMR0Ll9Edh9DRGU4MPXG7GAsutxIbG-d1cnr8YGz5WEN9JoCPZ4wtT5z-l8Wn8Z3RdEyDPktAnkHSWjDbWOxDAtl867lVZ/p.jpeg"
+                        alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    var img_custom = document.getElementById('img-custom');
+
+    function smallImg() {
+        img_custom.width = "100";
+    }
+    function normalImg() {
+        img_custom.width = "120";
+    }
+    function bigImg() {
+        img_custom.width = "250";
+    }
+</script>
+<script>
+    // Function to update the time every second
+    function updateTime() {
+        // Create a new Date object
+        var currentTime = new Date();
+
+        // Get hours, minutes, and seconds
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+
+        // Convert hours to 12-hour format
+        var meridiem = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+        // Pad minutes and seconds with leading zeros
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        // Format the time nicely
+        var formattedTime = hours + ":" + minutes + ":" + seconds + " " + meridiem;
+
+        // Display the formatted time in the HTML element with id="time"
+        document.getElementById('time').textContent = formattedTime;
+    }
+
+    // Call updateTime function every second (1000 milliseconds)
+    setInterval(updateTime, 1000);
+</script>
+<script>
+    function getBatteryPercentage() {
+        // Check if Battery Status API is supported
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(function (battery) {
+                // Update battery percentage when it changes
+                function updateBatteryStatus() {
+                    var batteryPercentage = Math.round(battery.level * 100);
+                    document.getElementById('battery').textContent = batteryPercentage + "%";
+                }
+
+                // Initial call to update battery status
+                updateBatteryStatus();
+
+                // Listen for changes in battery status
+                battery.addEventListener('levelchange', updateBatteryStatus);
+            });
+        } else if ('battery' in navigator) {
+            // For older implementations that use navigator.battery
+            var batteryPercentage = Math.round(navigator.battery.level * 100);
+            document.getElementById('battery').textContent = batteryPercentage + "%";
+        } else {
+            // Fallback to a default value if battery information is not available
+            document.getElementById('battery').textContent = "N";
+        }
+    }
+
+    // Call the function to get battery percentage when the page loads
+    window.onload = getBatteryPercentage;
+</script>
+<script>
+    function fetchDetails() {
+        var username = document.getElementById('usernameInput').value;
+        document.querySelectorAll('.username').forEach(element => {
+            element.textContent = username; // Set username
+        });
+
+        fetch(`/scrape?username=${username}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Set profile image
+                var profileImage = data.profileImage;
+                var profileImageElements = document.querySelectorAll('.profile-image');
+                profileImageElements.forEach(element => {
+                    element.src = profileImage;
+                });
+
+                // Set full name
+                var fullName = data.fullName;
+                var fullNameElements = document.querySelectorAll('.fullName');
+                fullNameElements.forEach(element => {
+                    element.textContent = fullName;
+                });
+
+                // Set followers count
+                var followersCount = "" + data.followersCount;
+                var followersCountElements = document.querySelectorAll('.followersCount');
+                followersCountElements.forEach(element => {
+                    element.textContent = followersCount;
+                });
+
+                // Set following count
+                var followingCount = "" + data.followingCount;
+                var followingCountElements = document.querySelectorAll('.followingCount');
+                followingCountElements.forEach(element => {
+                    element.textContent = followingCount;
+                });
+
+                // Set post count
+                var postCount = "Post Count: " + data.postCount;
+                var postCountElements = document.querySelectorAll('.postCount');
+                postCountElements.forEach(element => {
+                    element.textContent = postCount;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching details:', error);
+                alert('An error occurred while fetching details. Please try again later.');
+            });
+    }
+</script>
+
+
+
+</html>
